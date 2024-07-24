@@ -32,16 +32,21 @@ function renderMessages(messages) {
             <div class="message">
                 <div class="messageText">${message.message}</div>
                 <img src="${message.image}" alt="Uploaded image" class="messageImg">
-                <div class="messageTime">${new Date(message.created_at).toLocaleString("zh-TW", { 
-                    timeZone: "Asia/Taipei",
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    second: "2-digit",
-                    hour12: false
-                })}</div>
+                <div class="footer">
+                    <button class="deleteButton" onclick="deleteMessage(${message.id})">
+                        <img src="/static/images/delete.png" alt="Delete" class="deleteIcon">
+                    </button>
+                    <div class="messageTime">${new Date(message.created_at).toLocaleString("zh-TW", { 
+                        timeZone: "Asia/Taipei",
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                        hour12: false
+                    })}</div>
+                </div>
             </div>
         `;
         messageContainer.insertAdjacentHTML("beforeend", messageElement);
@@ -69,4 +74,26 @@ async function fetchSubmitForm(formData){
         console.error("Error:", error);
         alert("上傳留言時發生錯誤");
     };
+}
+
+async function deleteMessage(messageId){
+    if (confirm("確定要刪除這則留言嗎？")){
+        try{
+            const response = await fetch(`/api/messages/${messageId}`,{
+                method: "DELETE",
+            });
+
+            const result = await response.json();
+            if (result.ok){
+                alert("留言刪除成功");
+                // 成功刪除後刷新留言列表
+                fetchMessages();
+            }else{
+                alert("留言刪除失敗，請再試一次");
+            }
+        }catch(error){
+            console.error("Error:", error);
+            alert("刪除留言時發生錯誤");
+        }
+    }
 }

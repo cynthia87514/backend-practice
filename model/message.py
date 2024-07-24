@@ -31,3 +31,13 @@ class MessageModel:
                 message["created_at"] = taipei_time.isoformat()
             message["image"] = message.pop("image_url")
         return messages
+    
+    @staticmethod
+    async def delete_message(message_id: int):
+        query = "DELETE FROM messages WHERE id = %s"
+        try:
+            Database.execute_query(query, (message_id,))
+            return {"ok": True}
+        except Exception as e:
+            print(e)
+            return {"error": True}

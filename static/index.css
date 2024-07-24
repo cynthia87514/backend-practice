@@ -137,7 +137,21 @@ button:hover{
     height:300px;
     object-fit:cover;
 }
+.footer{
+    display:flex;
+    justify-content:space-between;
+}
+.deleteButton, .deleteIcon{
+    flex:none;
+    width:23px;
+    height:23px;
+    margin:0px;
+    margin-left:2px;
+    padding:0px;
+    background-color:#F0F0F0;
+}
 .messageTime{
+    flex:none;
     text-align:right;
     margin-right:5px;
     font-family:"Noto Sans TC", sans-serif;

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File, Form
+from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from fastapi.responses import JSONResponse
 from model.message import MessageModel
 from schema.message import MessageRender
@@ -46,3 +46,11 @@ async def upload_message(message: str = Form(...), image: UploadFile = File(...)
 async def get_messages():
     messages = await MessageModel.get_messages()
     return messages
+
+@MessageRouter.delete("/messages/{message_id}")
+async def delete_message(message_id: int):
+    result = await MessageModel.delete_message(message_id)
+    if result.get("ok"):
+        return JSONResponse(content={"ok": True})
+    else:
+        raise HTTPException(status_code=500, detail="Failed to delete message")
