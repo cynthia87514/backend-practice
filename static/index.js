@@ -2,13 +2,16 @@ fetchMessages();
 
 document.getElementById("messageForm").addEventListener("submit", async function(event){
     event.preventDefault();
+    document.getElementById("uploadingMessage").style.display = "block";
     const formData = new FormData(event.target);
     await fetchSubmitForm(formData);
+    document.getElementById("uploadingMessage").style.display = "none";
 })
 
 // Function Part //
 async function fetchMessages(){
     try{
+        document.getElementById("loadingMessage").style.display = "block";
         const response = await fetch("/api/messages");
         const messages = await response.json();
         renderMessages(messages);

@@ -106,7 +106,7 @@ button{
 button:hover{
     background-color:#357085;
 }
-#loadingMessage{
+#loadingMessage, #uploadingMessage{
     text-align:center;
     margin-top:20px;
     font-family:"Noto Sans TC", sans-serif;
