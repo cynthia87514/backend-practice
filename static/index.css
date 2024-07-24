@@ -13,6 +13,11 @@ body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    background-image:url("images/background.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-attachment:fixed;
 }
 .headline{
     text-align:center;
@@ -43,8 +48,8 @@ form{
     margin-top:10px;
     width:360px;
     padding:5px;
-    border:#448899 dashed 3px;
     background-color:#f9f9f9;
+    border:#448899 dashed 3px;
     border-radius:10px;
 }
 .messageBox, .imageBox{
@@ -95,9 +100,48 @@ button{
     font-size:16px;
     border-radius:5px;
     background-color:#448899;
-    color:white;
+    color:#FFFFFF;
     cursor:pointer;
 }
-button:hover {
+button:hover{
     background-color:#357085;
+}
+#loadingMessage{
+    text-align:center;
+    margin-top:20px;
+    font-family:"Noto Sans TC", sans-serif;
+    font-weight:500;
+    font-size:16px;
+    color:#666666;
+}
+#messageContainer{
+    display:none;
+}
+.message{
+    background-color:#F0F0F0;
+    margin-top:20px;
+    margin-bottom:20px;
+    border-radius:5px;
+}
+.messageText{
+    text-align:left;
+    margin-left:5px;
+    font-family:"Noto Sans TC", sans-serif;
+    font-weight:500;
+    font-size:16px;
+    color:#666666;
+}
+.messageImg{
+    max-width:100%;
+    width:300px;
+    height:300px;
+    object-fit:cover;
+}
+.messageTime{
+    text-align:right;
+    margin-right:5px;
+    font-family:"Noto Sans TC", sans-serif;
+    font-weight:500;
+    font-size:16px;
+    color:#666666;
 }

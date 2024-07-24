@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="headline">龍龍的留言版</div>
-    <div class="subheadline">發表一篇圖文，上傳你今天最喜歡的照片吧</div>
+    <div class="subheadline">發表一篇圖文，上傳今天最喜歡的照片吧</div>
     <form id="messageForm">
         <div class="messageBox">
             <label for="message">說點什麼吧：</label>
@@ -17,9 +17,11 @@
         </div>
         <div class="imageBox">
             <label for="image">圖片放這裡：</label>
-            <input type="file" id="image" name="iamge" accept="image/*" required>
+            <input type="file" id="image" name="image" accept="image/*" required>
         </div>
         <button type="submit">上傳囉</button>
     </form>
+    <div id="loadingMessage">畫面加載中...</div>
+    <div id="messageContainer"></div>
 </body>
 </html>
