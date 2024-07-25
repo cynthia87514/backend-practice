@@ -6,6 +6,7 @@ import boto3
 from typing import List
 import os
 from dotenv import load_dotenv
+from uuid import uuid4
 
 MessageRouter = APIRouter(
     prefix = "/api",
@@ -26,8 +27,12 @@ CLOUDFRONT_DOMAIN = os.getenv("CLOUDFRONT_DOMAIN")
 @MessageRouter.post("/upload")
 async def upload_message(message: str = Form(...), image: UploadFile = File(...)):
     try:
+        # Generate a unique filename using UUID
+        file_extension = os.path.splitext(image.filename)[1]      
+        unique_filename = f"{uuid4()}{file_extension}"
+        s3_key = f"images/{unique_filename}"
+         
         # Upload image to S3
-        s3_key = f"images/{image.filename}"
         s3_client.upload_fileobj(image.file, BUCKET_NAME, s3_key)
         
         # Generate CloudFront URL
