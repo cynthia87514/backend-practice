@@ -3,9 +3,13 @@ fetchMessages();
 document.getElementById("messageForm").addEventListener("submit", async function(event){
     event.preventDefault();
     document.getElementById("uploadingMessage").style.display = "block";
+    document.getElementById("submitButton").disabled = true;
+
     const formData = new FormData(event.target);
     await fetchSubmitForm(formData);
+    
     document.getElementById("uploadingMessage").style.display = "none";
+    document.getElementById("submitButton").disabled = false;
 })
 
 // Function Part //
@@ -31,7 +35,7 @@ function renderMessages(messages) {
         const messageElement = `
             <div class="message">
                 <div class="messageText">${message.message}</div>
-                <img src="${message.image}" alt="Uploaded image" class="messageImg">
+                <img src="${message.image}" alt="圖片加載中..." class="messageImg">
                 <div class="footer">
                     <button class="deleteButton" onclick="deleteMessage(${message.id})">
                         <img src="/static/images/delete.png" alt="Delete" class="deleteIcon">
