@@ -22,3 +22,4 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
       - ./static:/usr/share/nginx/html/static
       - /etc/ssl/certs/dhparam.pem:/etc/ssl/certs/dhparam.pem
+      - .:/app
